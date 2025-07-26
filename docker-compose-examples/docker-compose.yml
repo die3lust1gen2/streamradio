@@ -1,0 +1,13 @@
+services:
+
+  streamradio:
+    image: ghcr.io/die3lust1gen2/streamradio
+    restart: unless-stopped
+    ports:
+      - 8888:8888/tcp
+    environment:
+      TZ: Europe/Berlin
+      SR_TOKEN: 
+      SR_BITRATE: 32k
+      SR_LOWLATENCY: true
+      SR_MONO: true
