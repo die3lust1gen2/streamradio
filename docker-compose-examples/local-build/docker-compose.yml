@@ -11,3 +11,4 @@ services:
       SR_BITRATE: 32k
       SR_LOWLATENCY: true
       SR_MONO: true
+    security_opt: ['no-new-privileges:true']

@@ -7,3 +7,4 @@ services:
       - 8888:8888/tcp
     env_file:
       - docker-compose.env
+    security_opt: ['no-new-privileges:true']
