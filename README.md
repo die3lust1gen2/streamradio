@@ -102,6 +102,7 @@ services:
       TZ: Europe/Berlin
       SR_TOKEN: asdfasdfasdfasdf
       SR_BITRATE: 64k
+    security_opt: ['no-new-privileges:true']
 ```
 
 # Configuration
