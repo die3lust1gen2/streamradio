@@ -11,7 +11,7 @@ if ! getent group "$GID" >/dev/null; then
 fi
 
 # Create user if not exists
-if ! id -u "$UID" >/dev/null 2>&1; then
+if ! getent passwd "$UID" >/dev/null; then
     adduser -D -u "$UID" -G "$APPNAME" "$APPNAME"
 fi
 
