@@ -127,7 +127,7 @@ SR_LOGLEVEL         | error \| warning \| info \| debug \| trace  | error     | 
 
 ## Advanced Configuration
 
-You can change MediaMTX settings via the MTX_* environment variables. See the <a href="https://github.com/bluenviron/mediamtx?tab=readme-ov-file#other-features">MediaMTX documentation</a> for more information.
+You can change MediaMTX settings via the MTX_* environment variables. See the <a href="https://mediamtx.org/docs/usage/configuration">MediaMTX documentation</a> for more information.
 
 variable | value | default | setting
 ---|---|---|---
