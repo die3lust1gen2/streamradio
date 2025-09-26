@@ -1,0 +1,17 @@
+version: 2
+
+multi-ecosystem-groups:
+  dependencies:
+    schedule:
+      interval: "daily"
+
+updates:
+  #MediaMTX
+  - package-ecosystem: "docker"
+    directory: "/"
+    multi-ecosystem-group: "dependencies"
+
+  #streamlink
+  - package-ecosystem: "pip"
+    directory: "/"
+    multi-ecosystem-group: "dependencies"
