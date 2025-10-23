@@ -4,13 +4,13 @@ env:
   IMAGE_TAG: latest
 
 on:
-  push:
-    tags:
-      - 'v*.*.*'
-    paths:
-      - 'Dockerfile'
-      - 'stream.sh'
-      - 'entrypoint.sh'
+#  push:
+#    tags:
+#      - 'v*.*.*'
+#    paths:
+#      - 'Dockerfile'
+#      - 'stream.sh'
+#      - 'entrypoint.sh'
 
   release:
     types: [published, edited]
