@@ -1,4 +1,4 @@
-FROM bluenviron/mediamtx:1.15.4 AS mediamtx
+FROM bluenviron/mediamtx:1.15.5 AS mediamtx
 FROM alpine:latest
 
 #app defaults
