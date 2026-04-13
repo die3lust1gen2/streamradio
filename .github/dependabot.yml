@@ -3,7 +3,7 @@ version: 2
 multi-ecosystem-groups:
   dependencies:
     schedule:
-      interval: "daily"
+      interval: "weekly"
 
 updates:
   #MediaMTX
