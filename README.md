@@ -151,7 +151,7 @@ services:
   streamradio:
     ...
     environment:
-      SR_BASEPATH: streamradio
+      SR_BASEPATH: /streamradio
 ```
 
 ### Apache
