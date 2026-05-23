@@ -121,6 +121,7 @@ SR_MONO             | true \| false                               | false     | 
 SR_CUTOFF           | 4000, 6000, 8000, 12000 or 20000            | empty     | Sets audio bandwidth (in Hz)
 SR_PLATFORM         | youtube.com or twitch.tv                    | twitch.tv | Default streaming platform.
 SR_YTQUALITY        | 360p, 480p, 720p, 1080p, best               | 480p      | quality selection for youtube streams. Youtube does not provide audio only streams, so we have to use full video streams and extract the audio.
+SR_BASEPATH         | /streamradio                                | empty     | basepath for reverse proxy (poor man's implementation with depth of 1)
 SR_PARAM_STREAMLINK | see streamlink docs                         | empty     | add additional parameters to streamlink.
 SR_PARAM_FFMPEG     | see ffmpeg docs                             | empty     | add additional parameters to ffmpeg.
 SR_LOGLEVEL         | error \| warning \| info \| debug \| trace  | error     | set loglevel for streamlink and ffmpeg. debug and trace will produce **A LOT OF LOGS!**
@@ -137,13 +138,23 @@ MTX_PATHDEFAULTS_RUNONDEMANDCLOSEAFTER | number + unit (eg. 60s, 120s) | 120s | 
 
 # Reverse proxy
 
-### Apache
-
-Serving the container with Apache under a dedicated sub path **/streamradio/<channel>**.
+Serving the container under a dedicated sub path **/streamradio/<channel>**.
 
 To simplify and unify stream URL access for VLC, we rewrite VLC requests (identified by user-agent) to the playlist file, so:<br/>
  /streamradio/**\<channel\>** will be redirected /streamradio/**\<channel\>**/index.m3u8
 
+# configure sub path in container
+
+```yaml
+services:
+
+  streamradio:
+    ...
+    environment:
+      SR_BASEPATH: streamradio
+```
+
+### Apache
 ```apache
 
 <Virtualhost :443>

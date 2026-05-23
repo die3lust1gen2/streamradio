@@ -1,0 +1,15 @@
+services:
+
+  streamradio:
+    build: ../../
+    restart: unless-stopped
+    ports:
+      - 8888:8888/tcp
+    environment:
+      TZ: Europe/Berlin
+      SR_TOKEN: 
+      SR_BITRATE: 32k
+      SR_LOWLATENCY: true
+      SR_MONO: true
+      SR_BASEPATH: /streamradio
+    security_opt: ['no-new-privileges:true']

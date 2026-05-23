@@ -9,6 +9,8 @@ PARAM_LOGLEVEL="$DEFAULTS_LOGLEVEL"
 PARAM_BITRATE="$DEFAULTS_BITRATE"
 PARAM_PLATFORM="$DEFAULTS_PLATFORM"
 PARAM_YTQUALITY="$DEFAULTS_YTQUALITY"
+PARAM_BASEPATH="$DEFAULTS_BASEPATH"
+PARAM_USEBASEPATH=false
 
 PARAM_AUTH=""
 PARAM_LL=""
@@ -43,6 +45,7 @@ if [ -n "$SR_CUTOFF" ];           then PARAM_CUTOFF="$SR_CUTOFF"; fi
 if [ -n "$SR_PARAM_STREAMLINK" ]; then PARAM_STREAMLINK="$SR_PARAM_STREAMLINK"; fi
 if [ -n "$SR_PARAM_FFMPEG" ];     then PARAM_FFMPEG="$SR_PARAM_FFMPEG"; fi
 if [ -n "$SR_PLATFORM" ];         then PARAM_PLATFORM="$SR_PLATFORM"; fi
+if [ -n "$SR_BASEPATH" ];         then PARAM_BASEPATH="$SR_BASEPATH"; fi
 if [ "$SR_LOWLATENCY" = "true" ]; then PARAM_LL="--twitch-low-latency"; fi
 if [ "$SR_MONO" = "true" ];       then PARAM_MONO="-ac 1"; fi
 
@@ -50,7 +53,8 @@ if [ "$SR_MONO" = "true" ];       then PARAM_MONO="-ac 1"; fi
 #| Parse URL parameters and override defaults from environment
 #+-----------------------------------------------------------------------------
 
-STRING="${MTX_PATH#/}"  # Remove leading slash
+STRING="${MTX_PATH#/}"         # Remove leading slash
+BASEPATH="${PARAM_BASEPATH#/}" # Remove leading slash
 
 IFS='/' read -ra parts <<< "$STRING"
 
@@ -67,7 +71,11 @@ for i in "${!parts[@]}"; do
   elif [[ "$part" =~ ^([0-9]+k)$ ]];  then PARAM_BITRATE="${BASH_REMATCH[1]}"
   elif [[ "$part" =~ ^([0-9]+)hz$ ]]; then PARAM_CUTOFF="${BASH_REMATCH[1]}"
   elif [[ "$part" =~ ^([0-9]+p)$ ]];  then PARAM_YTQUALITY="${BASH_REMATCH[1]}"
-  elif [[ $i -eq 0 && $len -gt 1 ]];  then PARAM_PLATFORM="$part"
+
+  elif [[ $i -eq 0 && $len -gt 1 && "$part" == "$BASEPATH" ]];       then PARAM_USEBASEPATH=true
+  elif [[ $i -eq 0 && $len -gt 1 && $PARAM_USEBASEPATH -eq false ]]; then PARAM_PLATFORM="$part"
+  elif [[ $i -eq 1 && $len -gt 1 && $PARAM_USEBASEPATH -eq true ]];  then PARAM_PLATFORM="$part"
+  
   fi
 
 done
