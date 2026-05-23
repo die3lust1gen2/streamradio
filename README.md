@@ -168,7 +168,7 @@ services:
     RewriteCond %{HTTP_USER_AGENT}  "VLC.*LibVLC.*"
     RewriteRule (.*) $1index.m3u8 [R=301,L]
 
-    ProxyPassMatch  ^/streamradio/(.*)$ http://localhost:8888/$1
+    ProxyPassMatch  ^/(streamradio/.*)$ http://localhost:8888/$1
 
 </Virtualhost>
 ```
