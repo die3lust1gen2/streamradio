@@ -18,11 +18,12 @@ ENV MTX_HLSVARIANT="fmp4"
 ENV MTX_HLSSEGMENTDURATION=4s
 
 #mediamtx: define transports
-ENV MTX_HLS="yes"
-ENV MTX_RTSP="yes"
-ENV MTX_WEBRTC="no"
-ENV MTX_SRT="no"
-ENV MTX_RTMP="no"
+ENV MTX_HLS="true"
+ENV MTX_RTSP="true"
+ENV MTX_WEBRTC="false"
+ENV MTX_SRT="false"
+ENV MTX_RTMP="false"
+ENV MTX_MOQ="false"
 
 COPY requirements.txt .
 
